@@ -6,7 +6,7 @@ class ToDo extends React.Component {
 
     this.state = {
       listItem: '',
-      list: []
+      list: ['one', 'two', 'three']
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,9 +26,16 @@ class ToDo extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.listItem);
+    var newArray = this.state.list.slice();
+    newArray.push(this.state.listItem);
+    this.setState({
+      listItem: '',
+      list: newArray
+    });
   }
 
   render() {
+    var list = this.state.list;
     return (
       <div>
         <h1>To-Do</h1>
@@ -42,7 +49,13 @@ class ToDo extends React.Component {
             onChange={this.handleChange}
           />
         </form>
-        <ul />
+        <ul>
+          {list.map(item =>
+            <li key={item}>
+              {item}
+            </li>
+          )}
+        </ul>
       </div>
     );
   }
