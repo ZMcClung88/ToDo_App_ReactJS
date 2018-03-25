@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../public/style.css';
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -37,11 +38,11 @@ class ToDo extends React.Component {
   render() {
     var list = this.state.list;
     return (
-      <div>
+      <div className="container">
         <h1>
           To-Do ({list.length})
         </h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form">
           <input
             id="todo-item"
             // placeholder="github username"
@@ -53,7 +54,7 @@ class ToDo extends React.Component {
         </form>
         <ul>
           {list.map(item =>
-            <li key={item}>
+            <li className="list-item" key={item}>
               {item}
             </li>
           )}
