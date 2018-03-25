@@ -38,7 +38,9 @@ class ToDo extends React.Component {
     var list = this.state.list;
     return (
       <div>
-        <h1>To-Do</h1>
+        <h1>
+          To-Do ({list.length})
+        </h1>
         <form onSubmit={this.handleSubmit}>
           <input
             id="todo-item"
