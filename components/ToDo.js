@@ -12,6 +12,7 @@ class ToDo extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -26,13 +27,23 @@ class ToDo extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.listItem);
+    // console.log(this.state.listItem);
     var newArray = this.state.list.slice();
     newArray.push(this.state.listItem);
     this.setState({
       listItem: '',
       list: newArray
     });
+  }
+
+  handleClick(item) {
+    event.preventDefault();
+
+    console.log(this.state.list.indexOf(item));
+    let index = this.state.list.indexOf(item);
+    let arr = this.state.list;
+    arr.splice(index, 1);
+    this.setState({ list: arr });
   }
 
   render() {
@@ -54,7 +65,7 @@ class ToDo extends React.Component {
         </form>
         <ul>
           {list.map(item =>
-            <li className="list-item" key={item}>
+            <li className="list-item" key={item.id} onClick={this.handleClick.bind(this, item)}>
               {item}
             </li>
           )}
